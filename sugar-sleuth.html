@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sugar Sleuth</title>
+<style>
+  body { font-family: Arial; background:#e8f7ff; text-align:center; padding:40px; }
+  button { padding:15px; margin:10px; }
+</style>
+</head>
+<body>
+
+<h1>🔍 Sugar Sleuth</h1>
+<p>Which has less added sugar?</p>
+
+<h2 id="pair"></h2>
+
+<button onclick="guess(true)">Option A</button>
+<button onclick="guess(false)">Option B</button>
+
+<p id="feedback"></p>
+
+<script>
+const pairs = [
+  { text:"A: Flavored yogurt | B: Plain yogurt + fruit", correct:true },
+  { text:"A: Sports drink | B: Water", correct:false },
+  { text:"A: Granola bar | B: Nuts + fruit", correct:false }
+];
+
+let current = {};
+
+function newPair() {
+  current = pairs[Math.floor(Math.random() * pairs.length)];
+  document.getElementById("pair").innerText = current.text;
+  document.getElementById("feedback").innerText = "";
+}
+
+function guess(choice) {
+  if (choice === current.correct) {
+    document.getElementById("feedback").innerText =
+      "✅ Correct! Lower sugar = steadier energy.";
+  } else {
+    document.getElementById("feedback").innerText =
+      "❌ Not quite. Less added sugar helps avoid crashes.";
+  }
+  setTimeout(newPair, 2000);
+}
+
+newPair();
+</script>
+
+</body>
+</html>
