@@ -22,9 +22,10 @@
 
 <script>
 const pairs = [
-  { text:"A: Flavored yogurt | B: Plain yogurt + fruit", correct:true },
+  { text:"A: Flavored yogurt | B: Plain yogurt + fruit", correct:false },
   { text:"A: Sports drink | B: Water", correct:false },
-  { text:"A: Granola bar | B: Nuts + fruit", correct:false }
+  { text:"A: Granola bar | B: Nuts + fruit", correct:false },
+  { text:"A: Whole grain crackers and Peanut Butter | B: Cookies", correct:true }
 ];
 
 let current = {};
@@ -48,6 +49,8 @@ function guess(choice) {
 
 newPair();
 </script>
+
+<button onclick="window.location.href='food-swap.html'">Play Food Swap</button>
 
 </body>
 </html>
