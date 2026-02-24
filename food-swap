@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Food Swap Challenge</title>
+<style>
+  body { font-family: Arial; background:#f1fff1; text-align:center; padding:30px; }
+  button { padding:15px; margin:10px; font-size:16px; }
+  #score { font-weight:bold; }
+</style>
+</head>
+<body>
+
+<h1>🥗 Food Swap Challenge</h1>
+<p>Pick the healthier swap!</p>
+
+<h2 id="food"></h2>
+
+<button onclick="choose(true)">🥦 Healthier Option</button>
+<button onclick="choose(false)">🍟 Less Healthy Option</button>
+
+<p id="feedback"></p>
+<p id="score">Score: 0</p>
+
+<script>
+const swaps = [
+  { food:"Soda", healthy:"Water or flavored water", correct:true },
+  { food:"Chips", healthy:"Air-popped popcorn", correct:true },
+  { food:"Candy", healthy:"Fruit", correct:true },
+  { food:"Fast food burger", healthy:"Grilled chicken sandwich", correct:true }
+];
+
+let score = 0;
+let current = {};
+
+function newRound() {
+  current = swaps[Math.floor(Math.random() * swaps.length)];
+  document.getElementById("food").innerText =
+    "Swap for: " + current.food;
+  document.getElementById("feedback").innerText = "";
+}
+
+function choose(isHealthy) {
+  if (isHealthy === current.correct) {
+    score++;
+    document.getElementById("feedback").innerText =
+      "✅ Nice! Try: " + current.healthy;
+  } else {
+    document.getElementById("feedback").innerText =
+      "❌ Not the best swap. A better choice is: " + current.healthy;
+  }
+  document.getElementById("score").innerText = "Score: " + score;
+  setTimeout(newRound, 2000);
+}
+
+newRound();
+</script>
+
+</body>
+</html>
